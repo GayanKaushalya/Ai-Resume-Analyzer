@@ -1,5 +1,43 @@
 # 🤖 AI Resume Analyzer & ATS Scoring Platform
 
+# 🛠 Tech Stack
+
+<p align="left">
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/NLTK-154F3B?style=for-the-badge"/>
+
+<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Tesseract_OCR-4285F4?style=for-the-badge"/>
+
+<img src="https://img.shields.io/badge/PyMuPDF-FF6F00?style=for-the-badge"/>
+
+<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+
+</p>
+
+---
+
 An advanced AI-powered Resume Analyzer and ATS (Applicant Tracking System) Scoring Platform built using **FastAPI**, **Machine Learning**, **NLP**, and **OCR** technologies.
 
 The system allows users to upload resumes, analyze skills, compare resumes with job descriptions, calculate ATS compatibility scores, and generate AI-powered recommendations.
@@ -56,44 +94,6 @@ The system allows users to upload resumes, analyze skills, compare resumes with 
 - Dockerized Setup
 - PostgreSQL Integration
 - Redis Caching
-
----
-
-# 🛠 Tech Stack
-
-<p align="left">
-
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/NLTK-154F3B?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Tesseract_OCR-4285F4?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/PyMuPDF-FF6F00?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-
-</p>
 
 ---
 
