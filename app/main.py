@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.database import db
 from app.routers import auth_routes  # <-- Import the new routes
+from app.routers import resume_routes 
 
 app = FastAPI(
     title="AI Resume Analyzer API",
@@ -10,6 +11,7 @@ app = FastAPI(
 
 # Include the auth routes
 app.include_router(auth_routes.router)  # <-- Connect the routes to the app
+app.include_router(resume_routes.router) # <-- Connect the routes to the app
 
 @app.get("/")
 def read_root():
