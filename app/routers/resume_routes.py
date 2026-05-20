@@ -7,6 +7,7 @@ from app.utils import extract_text  # <-- IMPORT OUR NEW FUNCTION
 from app.models import JobMatchRequest  # <-- NEW
 from app.ml import calculate_ats_score, get_missing_skills  # <-- NEW
 from app.nlp import analyze_resume_text, extract_skills  # <-- Update this line to import extract_skills
+from bson import ObjectId
 
 router = APIRouter(
     prefix="/resume",
@@ -55,6 +56,47 @@ async def upload_resume(
         "filename": secure_filename,
         "extracted_length": len(extracted_text) # Returns how many characters were read!
     }
+
+@router.post("/analyze/{resume_id}")
+async def analyze_resume(
+    resume_id: str, 
+    current_user_email: str = Depends(get_current_user)
+):
+    # 1. Find the resume in MongoDB
+    try:
+        clean_resume_id = resume_id.strip()
+        resume = resumes_collection.find_one({
+            "_id": ObjectId(clean_resume_id), 
+            "user_email": current_user_email
+        })
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Invalid Resume ID format: {str(e)}")
+
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+
+    # 2. Get the raw text we extracted in Phase 4
+    text = resume.get("extracted_text", "")
+    if not text:
+        raise HTTPException(status_code=400, detail="No text was extracted from this resume.")
+
+    # 3. Feed the text to our NLP AI
+    nlp_results = analyze_resume_text(text)
+
+    # 4. Update the MongoDB document with the AI's findings
+    resumes_collection.update_one(
+        {"_id": ObjectId(clean_resume_id)},
+        {"$set": {
+            "status": "Analyzed", 
+            "nlp_data": nlp_results
+        }}
+    )
+
+    return {
+        "message": "Resume analyzed successfully!",
+        "data": nlp_results
+    }
+
 @router.post("/match-job/{resume_id}")
 async def match_resume_to_job(
     resume_id: str, 
@@ -63,12 +105,17 @@ async def match_resume_to_job(
 ):
     # 1. Find the resume in MongoDB
     try:
+        # Automatically remove any accidental spaces or newlines
+        clean_resume_id = resume_id.strip() 
+        
         resume = resumes_collection.find_one({
-            "_id": ObjectId(resume_id), 
+            "_id": ObjectId(clean_resume_id), 
             "user_email": current_user_email
         })
-    except:
-        raise HTTPException(status_code=400, detail="Invalid Resume ID format")
+    except Exception as e:
+        # Print the REAL error to your VS Code terminal so we can see it!
+        print(f"🚨 DEBUG ERROR: {e}") 
+        raise HTTPException(status_code=400, detail=f"Invalid Resume ID format: {str(e)}")
 
     if not resume or "extracted_text" not in resume or "nlp_data" not in resume:
         raise HTTPException(
