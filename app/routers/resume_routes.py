@@ -159,3 +159,20 @@ async def match_resume_to_job(
         "message": "ATS Scoring complete!",
         "data": match_results
     }
+
+@router.get("/history")
+async def get_resume_history(current_user_email: str = Depends(get_current_user)):
+    # Find all resumes belonging to this user
+    resumes = list(resumes_collection.find({"user_email": current_user_email}))
+    
+    # Format the MongoDB data (convert ObjectIds to strings) so it's JSON serializable
+    history_list = []
+    for r in resumes:
+        history_list.append({
+            "id": str(r["_id"]),
+            "filename": r.get("filename", "").replace(f"{current_user_email}_", ""), # clean up name
+            "status": r.get("status", "Uploaded"),
+            "skills": r.get("nlp_data", {}).get("skills", [])
+        })
+        
+    return {"data": history_list}
